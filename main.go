@@ -63,9 +63,9 @@ func (b *Barbershop) CutHair() *Client {
 func main() {
 	barbershop := NewBarbershop(CAP)
 	var event string
-	var id int
+	id := 0
 	for {
-		fmt.Scanf("%s %d", &event, &id)
+		fmt.Scanf("%s", &event)
 		switch event {
 		case "GoToBarbershop":
 			fmt.Printf("Client %d is going to barbershop\n", id)
@@ -73,6 +73,7 @@ func main() {
 			if err := barbershop.GoToBarbershop(client); err != nil {
 				fmt.Println(err)
 			}
+			id++
 		case "CutHair":
 			go func() {
 				client := barbershop.CutHair()
